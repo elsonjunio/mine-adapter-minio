@@ -1,0 +1,27 @@
+[project]
+name = "mine-adapter-minio"
+version = "0.1.0"
+description = "MinIO adapter implementation for mine-spec"
+authors = [
+    {name = "Elson Silva",email = "elsonjuniog@gmail.com"}
+]
+license = {text = "AGPL"}
+readme = "README.md"
+
+packages = [{ include = "mine_adapter_minio", from = "src" }]
+
+
+[tool.poetry.dependencies]
+python = "^3.11"
+mine-spec = { git = "https://github.com/elsonjunio/mine-spec.git", tag = "v0.1.2" }
+boto3 = "^1.42.54"
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "blue (>=0.9.1,<0.10.0)"
+]
