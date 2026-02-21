@@ -1,6 +1,6 @@
 [project]
 name = "mine-adapter-minio"
-version = "0.1.0"
+version = "0.1.1"
 description = "MinIO adapter implementation for mine-spec"
 authors = [
     {name = "Elson Silva",email = "elsonjuniog@gmail.com"}
@@ -10,11 +10,12 @@ readme = "README.md"
 
 packages = [{ include = "mine_adapter_minio", from = "src" }]
 
+requires-python = ">=3.11"
 
-[tool.poetry.dependencies]
-python = "^3.11"
-mine-spec = { git = "https://github.com/elsonjunio/mine-spec.git", tag = "v0.1.2" }
-boto3 = "^1.42.54"
+dependencies = [
+    "boto3 (>=1.42.49,<2.0.0)",
+    "mine-spec @ git+https://github.com/elsonjunio/mine-spec.git@v0.1.2",
+]
 
 
 [build-system]
@@ -25,3 +26,50 @@ build-backend = "poetry.core.masonry.api"
 dev = [
     "blue (>=0.9.1,<0.10.0)"
 ]
+
+
+
+
+
+
+
+[project]
+name = "mine"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "elsonjunio",email = "elsonjuniog@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "boto3 (>=1.42.49,<2.0.0)",
+    "fastapi (>=0.129.0,<0.130.0)",
+    "uvicorn (>=0.40.0,<0.41.0)",
+    "python-jose[cryptography] (>=3.5.0,<4.0.0)",
+    "httpx (>=0.28.1,<0.29.0)",
+    "pydantic-settings (>=2.12.0,<3.0.0)",
+    "python-dotenv (>=1.2.1,<2.0.0)",
+    "cryptography (>=46.0.5,<47.0.0)",
+    "python-json-logger (>=4.0.0,<5.0.0)",
+    "mine-spec @ git+https://github.com/elsonjunio/mine-spec.git@v0.1.2",
+    "mine-adapter-minio @ git+https://github.com/elsonjunio/mine-adapter-minio.git@v0.1.0"
+
+
+]
+
+[tool.poetry]
+package-mode = false
+
+[tool.poetry.scripts]
+dev = "uvicorn mine_backend.main:app --reload"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "blue (>=0.9.1,<0.10.0)"
+]
+
