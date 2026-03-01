@@ -391,19 +391,10 @@ class MinioObjectStorageAdapter(ObjectStoragePort):
         except ClientError as e:
             return handle_exception(e)
 
-    def get_bucket_versioning(self, name: str) -> bool:
+    def get_bucket_versioning_status(self, name: str) -> str | None:
         try:
             response = self.s3.get_bucket_versioning(Bucket=name)
-
-            status = response.get("Status")
-
-            # Pode retornar:
-            # "Enabled"
-            # "Suspended"
-            # ou None (nunca configurado)
-
-            return status == "Enabled"
-
+            return response.get("Status")  # Enabled | Suspended | None
         except ClientError as e:
             return handle_exception(e)
 
