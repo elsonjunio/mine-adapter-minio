@@ -14,7 +14,7 @@ requires-python = ">=3.11"
 
 dependencies = [
     "boto3 (>=1.42.49,<2.0.0)",
-    "mine-spec @ git+https://github.com/elsonjunio/mine-spec.git@v0.1.2",
+    "mine-spec @ git+https://github.com/elsonjunio/mine-spec.git@v0.1.3",
 ]
 
 
