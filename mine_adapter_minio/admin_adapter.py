@@ -182,7 +182,7 @@ class MinioAdminAdapter(UserAdminPort):
         return [
             BucketQuota(
                 bucket=item['bucket'],
-                quota_bytes=item['quota'],
+                quota_bytes=item['quota'] if 'quota' in item else 0,
                 type=item['type'],
             )
             for item in raw
